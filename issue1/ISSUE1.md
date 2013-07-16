@@ -1,6 +1,5 @@
 Issue 1
 =======
-
 ###Background:
         There are two integer arrays both of which size is N(N can be any positive integer).
     In these two integer arrays,there are full of random integers.
@@ -29,9 +28,16 @@ Issue Analyse
 
 Solutions:
 -------------
-
-###Solution 1:Genetic Algorithm
-
+###Solution 1:Genetic Algorithm(genetic.cpp)
+        What is Genetic Algorithm?Google it!It is a improved randomized algorithm.There are severl 
+    options like variation probability can be set that may have influence on the result.What is the
+    best options?It is just experiential in difference issues.
+        Compared with traverse algorithm,this algorithm can reduce computation overhead accoding to
+    your option set(generation number of evolution).But it can not promise to figure out the best 
+    result,and it can only figure out one probably best result in a runtime.In this issue case ,this
+    Genetic Algorithm code can frequently get the best result in no more than 1000 generations of
+    evolution.
+    
 
 
 
