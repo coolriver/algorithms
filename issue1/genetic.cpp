@@ -18,6 +18,7 @@ typedef struct {           //Struct of individual.
 	int ability;           //Ability to live(viability).
 	double sumP;           //Accumulative select probability.
 	int gene[MAXNUM];      //Gene of indivudual.
+			       //gent[i] = j means that a[i] exchange with b[j].
 }One;
 
 void initAB();                          //Initialize the two arrays.
