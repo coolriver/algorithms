@@ -28,10 +28,10 @@ Issue Analyse
 
 Solutions:
 -------------
-###Solution 1:Genetic Algorithm(genetic.cpp)
-        What is Genetic Algorithm?Google it!It is a improved randomized algorithm.There are severl 
-    options like variation probability can be set that may have influence on the result.What is the
-    best options?It is just experiential in difference issues.
+###Solution 1:[Genetic Algorithm](http://en.wikipedia.org/wiki/Genetic_algorithm)(genetic.cpp)
+        Genetic Algorithm is a improved randomized algorithm.There are severl options like variation
+    probability can be set that may have influence on the result.What is the best options?It is just
+    experiential in difference issues.
         Compared with traverse algorithm,this algorithm can reduce computation overhead accoding to
     your option set(generation number of evolution).But it can not promise to figure out the best 
     result,and it can only figure out one probably best result in a runtime.In this issue case ,this
