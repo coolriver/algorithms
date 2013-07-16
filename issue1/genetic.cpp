@@ -1,44 +1,47 @@
+/*
+ *   Author:Hanjiang
+ */
 #include <stdio.h>
 #include <iostream>
 #include <ctime>
 #include <math.h>
-#define MAXNUM 20
-#define GROUPSIZE 20
-#define EVONUM 1000
-#define RANDOMRANGE 10000
-#define SEXP 0.8
-#define VARIAP 0.3
+#define MAXNUM 20           //Size of each array.
+#define GROUPSIZE 20        //Size of population.
+#define EVONUM 1000         //Generation number that the population evolves.
+#define RANDOMRANGE 10000   //Range of the ramdom integers in each array.
+#define SEXP 0.8            //Probability of successfully mate.
+#define VARIAP 0.3          //Probability of variation.
 
 using namespace std;
 
-typedef struct {
-	int ability;
-	double sumP;
-	int gene[MAXNUM];
+typedef struct {           //Struct of individual.
+	int ability;           //Ability to live(viability).
+	double sumP;           //Accumulative select probability.
+	int gene[MAXNUM];      //Gene of indivudual.
 }One;
 
-void initAB();
-void getRandomUnit(One * guy);
-void initGroup();
-int getAbility(int *gene,int option);
-void exchange(int *ac,int *bc);
-void getNB();
-void haveSex();
-void variation();
-void select();
-void evaluate();
-void setNB();
-void Xover(int father,int mother);
-void doVaria(int guy);
+void initAB();                          //Initialize the two arrays.
+void getRandomUnit(One * guy);          //Initialize an individual.
+void initGroup();                       //Initialize the population.
+int getAbility(int *gene,int option);   //Calculate the vialibity of an individual.
+void exchange(int *ac,int *bc);         //Exchange the value of two integers.
+void getNB();                           //Get the individual that has the strongest viability.
+void haveSex();                         //Mate  #_#.
+void variation();                       //Variation config.
+void select();                          //Natural selection.
+void evaluate();                        //Get viability of each individual in population.
+void setNB();                           //Set the individual that has the strongest viability.
+void Xover(int father,int mother);      //Exchange part of genes of two individuals.
+void doVaria(int guy);                  //Do variation.
 
-int a[MAXNUM];//= {21,33,32,4,165,6,7,833,9,1800};
-int b[MAXNUM];// = {12,435,12,546,12,31,145,67,23,98};
-int indexs[MAXNUM + 1];
-int maxGap = 0;
+int a[MAXNUM];               //Array a.
+int b[MAXNUM];               //Array b.
+int indexs[MAXNUM + 1];      //Gene available range.
+int maxGap = 0;              //Summation of all integers both in array a and array b.
 
 
-One group[GROUPSIZE + 1];
-One groupEvo[GROUPSIZE + 1];
+One group[GROUPSIZE + 1];   //Population:an array of individuals.
+One groupEvo[GROUPSIZE + 1];//A temporary array used for natural selection.
 
 int main(int argc, char* argv[])
 {
