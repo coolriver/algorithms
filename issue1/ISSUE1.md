@@ -24,7 +24,7 @@ Issue Analyse
     in math,we can easily get the result:(2N)!/(N)!.At worst,we can traverse all the available ways
     to figure out the best one.However,the number of the available may be huge!Assuming that,N 
     values 10.Then (20)!/(10)! is approximately equal to 6.7e^11;If N values 100,the number of ways
-    is more than 3e^93.A huge number,isn't it?The way simply traverse all the ways and figure out the
+    is more than 3e^93.A huge number,is not it?The way simply traverse all the ways and figure out the
     best one seems extremely inefficient.So,we have to try other solutions.
 
 Solutions:
