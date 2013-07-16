@@ -41,6 +41,7 @@ int maxGap = 0;              //Summation of all integers both in array a and arr
 
 
 One group[GROUPSIZE + 1];   //Population:an array of individuals.
+                            //The last element in array is used to store the best individual in a population
 One groupEvo[GROUPSIZE + 1];//A temporary array used for natural selection.
 
 int main(int argc, char* argv[])
