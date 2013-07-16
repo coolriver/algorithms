@@ -37,7 +37,10 @@ Solutions:
     result,and it can only figure out one probably best result in a runtime.In this issue case ,this
     Genetic Algorithm code can frequently get the best result in no more than 1000 generations of
     evolution.
-    
+####Code usage:
+>g++ -o genetic.out genetic.cpp
+> 
+>./genetic.out
 
 
 
