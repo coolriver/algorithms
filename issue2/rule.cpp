@@ -5,7 +5,7 @@
  */
 #include <math.h>
 #include <iostream> 
-#include <time.h>
+#include <sys/time.h>
 using namespace std; 
 
 class Job
@@ -41,14 +41,15 @@ long Job::Calculate(long integer)
 void Job::Traverse()
 {
     long sum = 0;
-    clock_t t_start,t_end;            //running time
-    t_start = clock();
+    timeval t_start,t_end;            //running time
+    gettimeofday(&t_start,0);
     for (long i = 0;i <=a;i++){       //calculate each integer in [0 ~ a] and get the summation of them.
         sum += Calculate(i);
     }
-    t_end = clock();
-
-    cout << "method:traverse  count:"<<sum<<"  time:"<<t_end - t_start<<endl;
+    gettimeofday(&t_end,0);
+    double timeuse = 1000000 * (t_end.tv_sec - t_start.tv_sec) +
+                     t_end.tv_usec - t_start.tv_usec;
+    cout << "method:traverse  count:"<<sum<<"  time:"<<timeuse<<"us"<<endl;
 }
 
 
@@ -101,8 +102,8 @@ long Job::Recursion(long integer,int step,bool zero)
 void Job::Rule()
 {
     long sum = 0;
-    clock_t t_start,t_end;            //running time
-    t_start = clock();
+    timeval t_start,t_end;            //running time
+    gettimeofday(&t_start,0);
     
     int atmp = a;
     int step  = 0;
@@ -111,8 +112,10 @@ void Job::Rule()
     }
     sum =  Recursion(a,step,false);  //start recursion
 
-    t_end = clock();
-    cout << "method:traverse  count:"<<sum<<"  time:"<<t_end - t_start<<endl;
+    gettimeofday(&t_end,0);
+    double timeuse = 1000000 * (t_end.tv_sec - t_start.tv_sec) +                                                                        
+                     t_end.tv_usec - t_start.tv_usec;
+    cout << "method:rule      count:"<<sum<<"  time:"<<timeuse<<"us"<<endl;
 }
 
 int main(int argc,char ** argv)
