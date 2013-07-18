@@ -17,8 +17,10 @@ class Job
         Job(long a_,long b_);                          
         long Calculate(long integer);   //calculate count of "b" in "integer".
         void Traverse();                //calculate total count of "b" in [0~a] using method of traversing.
-        void Rule();                    //calculate total count of "b" in [0~a] using method of finding rules.
+        void RuleRecursion();                    //calculate total count of "b" in [0~a] using method of finding rules.
+        void RuleCirculate();
         long Recursion(long integer,int step,bool zero); //recursion for function Rule().
+        long Circulate();
 };
 
 Job::Job(long a_,long b_)
@@ -49,7 +51,7 @@ void Job::Traverse()
     gettimeofday(&t_end,0);
     double timeuse = 1000000 * (t_end.tv_sec - t_start.tv_sec) +
                      t_end.tv_usec - t_start.tv_usec;
-    cout << "method:traverse  count:"<<sum<<"  time:"<<timeuse<<"us"<<endl;
+    cout << "method:Traverse       count:"<<sum<<"  time:"<<timeuse<<"us"<<endl;
 }
 
 
@@ -99,7 +101,7 @@ long Job::Recursion(long integer,int step,bool zero)
     }
 }
 
-void Job::Rule()
+void Job::RuleRecursion()
 {
     long sum = 0;
     timeval t_start,t_end;            //running time
@@ -115,7 +117,65 @@ void Job::Rule()
     gettimeofday(&t_end,0);
     double timeuse = 1000000 * (t_end.tv_sec - t_start.tv_sec) +                                                                        
                      t_end.tv_usec - t_start.tv_usec;
-    cout << "method:rule      count:"<<sum<<"  time:"<<timeuse<<"us"<<endl;
+    cout << "method:RuleRecursion  count:"<<sum<<"  time:"<<timeuse<<"us"<<endl;
+}
+
+long Job::Circulate()
+{
+    long tmp = a;
+    long count = 0;
+    int character = 0;
+    long tail_count = 0;
+    long tail_length = 0;
+    long tail_count_zero = 0;
+    do{
+        character = tmp % 10;
+        if (tmp == a){
+            count = (character >= b)? 1 : 0;
+            tail_count = 1;
+            tail_length = 10;
+            tail_count_zero = 1;
+        }
+        else{
+            if (character > b){
+                if (0 == b && tmp / 10 == 0){
+                    count = (character - 1) * tail_count +tail_count_zero + count; 
+                }
+                else{
+                    count = character * tail_count + tail_length + count;
+                }
+            }
+            else if (character == b){
+                    count = character * tail_count + (a % tail_length + 1) + count;
+                }
+            else{
+                count = character * tail_count + count;
+            }
+        
+            tail_length *= 10;
+            if (0 == b){
+                tail_count_zero  = 8 * tail_count + tail_count + tail_count_zero;
+            }
+            tail_count = 10 * tail_count  + tail_length / 10;
+            
+        }
+    }while((tmp = tmp / 10) > 0);
+
+    return count;
+}
+
+void Job::RuleCirculate()
+{
+    long sum = 0;
+    timeval t_start,t_end;            //running time
+    gettimeofday(&t_start,0);
+
+    sum =  Circulate();  //start recursion
+
+    gettimeofday(&t_end,0);
+    double timeuse = 1000000 * (t_end.tv_sec - t_start.tv_sec) +                                                                        
+                     t_end.tv_usec - t_start.tv_usec;
+    cout << "method:RuleCirculate  count:"<<sum<<"  time:"<<timeuse<<"us"<<endl;
 }
 
 int main(int argc,char ** argv)
@@ -129,6 +189,9 @@ int main(int argc,char ** argv)
     } 
     Job job(atoi(argv[1]),atoi(argv[2]));
     job.Traverse();
-    job.Rule();
+    job.RuleRecursion();
+    job.RuleCirculate();
     return 0;
 }
+
+
