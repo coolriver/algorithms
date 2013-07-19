@@ -8,12 +8,12 @@ Issue2
         
 Solutions:
 --------
-##Solution 1:Traversion(rule.cpp > Job::Traversion())
+###Solution 1:Traversion(rule.cpp > Job::Traversion())
         The most directly solution:calculate each time C occurs in integers range from 0 to N and then
     add the results together.But using this solution,the speed seems extremly slow.Algorithm complexity
     is O(NlogN).
     
-##Solution 2:Find rules in recursion(rule.cpp > Job::RuleRecursion())
+###Solution 2:Find rules in recursion(rule.cpp > Job::RuleRecursion())
         Compared with Solution1,Solution 2 is  more efficient.We can find rules in integer N.Assuming
     that,characters in integer N like this:"abcdef"(a > 0).Define f(X) is total times character C occurs 
     in integers range from 0 to X.Then:
